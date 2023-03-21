@@ -1,5 +1,4 @@
-const meusDados2 = (props) => {
-    const {nome, curso, universidade} = props;
+const meusDados2 = ({nome, curso, universidade}) => {
     return (
         <div>
             <h1>Meu nome é: {nome}.</h1>
