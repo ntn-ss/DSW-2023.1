@@ -1,20 +1,20 @@
 const Temperatura = () => {
     function celsiusParaFahrenheit(c) {
         return(
-                (c+32)*1.8
+                (c*1.8)+32
         )
     }
     
     function fahrenheitParaCelsius (f) {
         return (
-            (f-32)/1.8
+            (f-32)*5/9
         )   
     }
     
     function kelvin(k) {
         return (
             <span>
-                em Celsius, dá {k+273}. em Fahrenheit, dá {k-273}.
+                em Celsius, dá {k-273.15}. Em Fahrenheit, dá {(k-273.15)*9/5+32}.
             </span>
         )
     }
