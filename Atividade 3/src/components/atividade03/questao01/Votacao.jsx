@@ -10,66 +10,73 @@ const Votacao = ({ cidade1, cidade2, cidade3, cidade4 }) => {
     let [cidadeMais, setCidadeMais] = useState("");
     let [cidadeMenos, setCidadeMenos] = useState("");
 
-    function verificaCidadeMais() {
-        let cidadeMaisVotada = Math.max(votosCidade1, votosCidade2, votosCidade3, votosCidade4);
-        if (cidadeMaisVotada === votosCidade1) {
-            cidadeMaisVotada = cidade1
-        }
-        if (cidadeMaisVotada === votosCidade2) {
-            cidadeMaisVotada = cidade2
-        }
-        if (cidadeMaisVotada === votosCidade3) {
-            cidadeMaisVotada = cidade3
-        }
-        if (cidadeMaisVotada === votosCidade4) {
-            cidadeMaisVotada = cidade4
-        }
+    let nomes = [cidade1, cidade2, cidade3, cidade4];
+    let votos = [votosCidade1, votosCidade2, votosCidade3, votosCidade4];
 
-        setCidadeMais(cidadeMaisVotada)
+    function verificaCidadeMais() {
+        let cidadeMaisVotada = votos[0];
+        let nomeCidadeMaisVotada = nomes[0];
+        for (let i=0;i<votos.length;i++){
+            if (votos[i]>cidadeMaisVotada){
+                cidadeMaisVotada = votos[i];
+                nomeCidadeMaisVotada = nomes[i];
+            }
+        }
+        let nomesCidadesMaisVotadas = "";
+        for (let i=0;i<votos.length;i++){
+            if (cidadeMaisVotada == votos[i]){
+                nomesCidadesMaisVotadas += " "+nomes[i];
+            }
+        }
+        setCidadeMais(nomesCidadesMaisVotadas);
     }
 
     function verificaCidadeMenos() {
-        let cidadeMenosVotada = Math.min(votosCidade1, votosCidade2, votosCidade3, votosCidade4);
-        if (cidadeMenosVotada === votosCidade1) {
-            cidadeMenosVotada = cidade1
+        let cidadeMenosVotada = votos[0];
+        let nomeCidadeMenosVotada = nomes[0];
+
+        
+        for (let i=0;i<votos.length;i++){
+            if (votos[i]<cidadeMenosVotada){
+                cidadeMenosVotada = votos[i];
+                nomeCidadeMenosVotada = nomes[i];
+            }
         }
-        if (cidadeMenosVotada === votosCidade2) {
-            cidadeMenosVotada = cidade2
+
+        let nomesCidadesMenosVotadas = "";
+        for (let i=0;i<votos.length;i++){
+            if (cidadeMenosVotada == votos[i]){
+                nomesCidadesMenosVotadas += " "+nomes[i];
+            }
         }
-        if (cidadeMenosVotada === votosCidade3) {
-            cidadeMenosVotada = cidade3
-        }
-        if (cidadeMenosVotada === votosCidade4) {
-            cidadeMenosVotada = cidade4
-        }
-        setCidadeMenos(cidadeMenosVotada);
+        setCidadeMenos(nomesCidadesMenosVotadas);
     }
 
     useEffect( ()=> {
         verificaCidadeMais();
         verificaCidadeMenos();
     }
-        , [votosCidade1,votosCidade2,votosCidade3, votosCidade4]
+        , votos
     )
 
     return (
         <div>
-            <h1>Votagem</h1>
+            <h1>Questão 1</h1>
             <h2>{cidade1}: {votosCidade1}.</h2>
             <h2>{cidade2}: {votosCidade2}.</h2>
             <h2>{cidade3}: {votosCidade3}.</h2>
             <h2>{cidade4}: {votosCidade4}.</h2>
             
             <div className="botoes">
-                <button onClick={() => { setVotosCidade1(votosCidade1+1) }}>Votar em {cidade1}.</button>
-                <button onClick={() => { setVotosCidade2(votosCidade2+1) }}>Votar em {cidade2}.</button>
-                <button onClick={() => { setVotosCidade3(votosCidade3+1) }}>Votar em {cidade3}.</button>
-                <button onClick={() => { setVotosCidade4(votosCidade4+1) }}>Votar em {cidade4}.</button>
+                <button onClick={() => { setVotosCidade1((anterior)=>anterior+1) }}>Votar em {cidade1}.</button>
+                <button onClick={() => { setVotosCidade2((anterior)=>anterior+1) }}>Votar em {cidade2}.</button>
+                <button onClick={() => { setVotosCidade3((anterior)=>anterior+1) }}>Votar em {cidade3}.</button>
+                <button onClick={() => { setVotosCidade4((anterior)=>anterior+1) }}>Votar em {cidade4}.</button>
             </div>
 
             <div>
-                <p>A cidade mais votada foi {cidadeMais}.</p>
-                <p>A cidade menos votada foi {cidadeMenos}.</p>
+                <p>Mais votada(s): {cidadeMais}.</p>
+                <p>Menos votada(s): {cidadeMenos}.</p>
             </div>
         </div>
     )
