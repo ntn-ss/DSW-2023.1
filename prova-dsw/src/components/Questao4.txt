@@ -1,7 +1,6 @@
-Hooks são importantes por um motivo: ajudam a não ter de "reinventar a roda" a cada projeto. Seu padrão é "useNomedaFuncaoQueDesempenhara".
+Hooks são importantes por um motivo: ajudam a não ter de "reinventar a roda" a cada projeto, isto é: trabalho repetitivo. Seu padrão para nomenclatura de arquivo é "useNomedaFuncaoQueDesempenhara".
 
-Alguns deles vêm por padrão no acervo do React e outros são disponibilizados publicamente pela comunidade dele.
-O desenvolvedor pode, também, criar seus próprios hooks, a fim de minimizar códigos repetidos e melhorar o seu fluxo de trabalho.
+Alguns deles vêm por padrão no acervo do React e outros são disponibilizados publicamente pela comunidade dele. O desenvolvedor pode, também, criar seus próprios hooks, a fim de minimizar códigos repetidos e melhorar o seu fluxo de trabalho.
 
 Um exemplo de hook que vem por padrão é o useState, que mudará o valor de uma variável com base no set da mesma variável quando uma determinada condição for satisfeita, ou seja: manter e atualizar um estado interno.
 Também há o useEffect, que cuidará para que certos códigos sejam executados apenas quando uma determinada dependência for modificada.
