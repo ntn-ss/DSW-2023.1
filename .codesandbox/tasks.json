@@ -8,6 +8,14 @@
       "name": "npx create-react-app prova-dsw",
       "command": "npx create-react-app prova-dsw",
       "runAtStart": true
+    },
+    "npm start": {
+      "name": "npm start",
+      "command": "npm start"
+    },
+    "cd prova-dsw": {
+      "name": "cd prova-dsw",
+      "command": "cd prova-dsw"
     }
   }
 }
