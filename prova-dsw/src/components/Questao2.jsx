@@ -31,10 +31,12 @@ const Questao2 = ({ id }) => {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
+      <h2>Questão 2</h2>
       <img src={image} style={{ width: "300px" }} />
       <button onClick={handleVirada}>Virar</button>
     </div>
