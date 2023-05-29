@@ -1,0 +1,55 @@
+.box {
+    display: flex;
+    text-align: center;
+}
+
+.box.wrap {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.box.column.wrap {
+    flex-flow: column wrap;
+    height: 300px;
+}
+
+.box.row {
+    flex-direction: row;
+}
+
+.box.column {
+    flex-direction: column;
+}
+
+.box.column-reverse {
+    flex-direction: column-reverse;
+}
+
+.box.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.item {
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.box.flex {
+    display: flex;
+    width: 600px;
+}
+
+.one {
+    flex: 1;
+    border: 1px solid black;
+}
+
+.two {
+    flex: 2;
+    border: 1px solid black;
+}
+
+.three {
+    flex: 3;
+    border: 1px solid black;
+}
