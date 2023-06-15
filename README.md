@@ -1,4 +1,4 @@
-# Desenvolvimento-de-Software-para-Web
+# DSW-2023.1
 
 Este repositório contém atividades minhas atividades e provas ao longo da disciplina "Desenvolvimento de Software para Web".
 
