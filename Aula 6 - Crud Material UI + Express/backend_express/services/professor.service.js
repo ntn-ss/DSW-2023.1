@@ -20,6 +20,7 @@ class ProfessorService {
         let professor = new ProfessorModel(
             id++,
             data.nome,
+            data.curso,
             data.titulacao,
             data.ai
         )
@@ -40,16 +41,15 @@ class ProfessorService {
         return null
     }
 
-    static delete(idProfessor){
-        for (let professor of professores) {
-            if (professor.id == idProfessor){
-                professores.pop([professor.id])
-                
-                return true
-            }
+    static delete(idProfessor) {
+        for (let i = 0; i < professores.length; i++) {
+          if (professores[i].id == idProfessor) {
+            professores.splice(i, 1);
+            return true;
+          }
         }
-        return false
-    }
+        return false;
+      }
 
     static retrieve(idProfessor){
         for (let professor of professores) {

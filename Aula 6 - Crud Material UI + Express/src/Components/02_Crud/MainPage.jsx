@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import MyMenu from "./MyMenuV1.jsx"
 import { Container } from "@mui/material"
 
+import Sobre from './Sobre'
+
 //páginas do Professor
 import CadastrarProfessor from "./Professor/Cadastrar"
 import ListarProfessor from "./Professor/Listar"
@@ -18,6 +20,8 @@ const MainPage = () => {
             <MyMenu />
             <Container sx={{mt:4}}>
                 <Routes>
+                    <Route path="/sobre" element={<Sobre />}/>
+
                     <Route path="/cadastrarProfessor" element={<CadastrarProfessor />}/>
                     <Route path="/listarProfessor" element={<ListarProfessor />}/>
                     <Route path="/editarProfessor/:id" element={<EditarProfessor />}/>

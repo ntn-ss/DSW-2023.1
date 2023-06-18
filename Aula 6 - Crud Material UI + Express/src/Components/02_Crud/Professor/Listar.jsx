@@ -6,23 +6,55 @@ import EditIcon from '@mui/icons-material/Edit'
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+
+import axios from "axios"
 
 const ListarProfessor = () => {
 
-    function deleteProfessorById(id){
-        if(window.confirm("Deseja excluir?")){
-            alert(`Professor ${id} excluído.`)
-        }
-    }
+    // function deleteProfessorById(id){
+    //     if(window.confirm("Deseja excluir?")){
+    //         alert(`Professor ${id} excluído.`)
+    //     }
+    // }
 
-    const professores = [
+    /* const professores = [
         {id: 0, nome: "Zictor Zarias", curso: "SI", titulacao: "DOUT"},
         {id: 1, nome: "Voão Jilnei", curso: "DD", titulacao: "DOUT"},
         {id: 2, nome: "Pânia Tinheiro", curso: "ES", titulacao: "DOUT"},
         {id: 3, nome: "Loão Javor", curso: "DD", titulacao: "DOUT"},
         {id: 4, nome: "Savid Dena", curso: "SI", titulacao: "DOUT"},
-    ]
+    ] */
+
+    const [professores, setProfessores] = useState([])
+
+    const navigate = useNavigate()
+
+    useEffect(
+        ()=>{
+            axios.get('http://localhost:3001/professores/listar')
+            .then(
+                (response)=>{
+                    setProfessores(response.data)
+                })
+            .catch(error=>console.log(error))
+        }, []
+    )
+
+    function apagarProfessor(id) {
+        if (window.confirm(`Deseja excluir o professor de ID ${id}?`)) {
+            axios.delete(`http://localhost:3001/professores/apagar/${id}`)
+            .then(
+                (response)=>{
+                    console.log(response);
+                    const resultado = professores.filter(professor=>professor.id!=id)
+                    setProfessores(resultado)
+                }
+            )
+            .catch(error=>console.log(error))
+        }
+    }
 
     return (
         <>
@@ -55,7 +87,7 @@ const ListarProfessor = () => {
                                                     <IconButton aria-label="edit" color="primary" component={Link} to={`/editarProfessor/${professor.id}`}>
                                                         <EditIcon />
                                                     </IconButton>
-                                                    <IconButton aria-label="delete" color="error" onClick={()=>deleteProfessorById(professor.id)}>
+                                                    <IconButton aria-label="delete" color="error" onClick={()=>apagarProfessor(professor.id)}>
                                                         <DeleteIcon />
                                                     </IconButton>
                                                 </Box>

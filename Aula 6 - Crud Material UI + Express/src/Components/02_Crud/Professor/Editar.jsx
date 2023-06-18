@@ -14,8 +14,13 @@ import {
   } from "@mui/material";
   import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
   const EditarProfessor = () => {
+
+    const navigate = useNavigate()
+
     const [nome, setNome] = useState("");
     const [curso, setCurso] = useState("");
     const [titulacao, setTitulacao] = useState("GRAD");
@@ -23,49 +28,70 @@ import { useParams } from "react-router-dom";
   
       const { al, ds, es, mc } = ai
   
-      const professores = [
-        {id: 0, nome: "Zictor Zarias", curso: "SI", titulacao: "DOUT", ai: {al: true, ds: false, es: false, mc: true}},
-        {id: 1, nome: "Voão Jilnei", curso: "DD", titulacao: "DOUT", ai: {al: false, ds: false, es: false, mc: false}},
-        {id: 2, nome: "Pânia Tinheiro", curso: "ES", titulacao: "DOUT", ai: {al: false, ds: true, es: true, mc: false}},
-        {id: 3, nome: "Loão Javor", curso: "DD", titulacao: "DOUT", ai: {al: false, ds: false, es: false, mc: false}},
-        {id: 4, nome: "Savid Dena", curso: "SI", titulacao: "DOUT", ai: {al: true, ds: true, es: false, mc: true}},
-    ]
+    //   const professores = [
+    //     {id: 0, nome: "Zictor Zarias", curso: "SI", titulacao: "DOUT", ai: {al: true, ds: false, es: false, mc: true}},
+    //     {id: 1, nome: "Voão Jilnei", curso: "DD", titulacao: "DOUT", ai: {al: false, ds: false, es: false, mc: false}},
+    //     {id: 2, nome: "Pânia Tinheiro", curso: "ES", titulacao: "DOUT", ai: {al: false, ds: true, es: true, mc: false}},
+    //     {id: 3, nome: "Loão Javor", curso: "DD", titulacao: "DOUT", ai: {al: false, ds: false, es: false, mc: false}},
+    //     {id: 4, nome: "Savid Dena", curso: "SI", titulacao: "DOUT", ai: {al: true, ds: true, es: false, mc: true}},
+    // ]
 
     const { id } = useParams()
 
-    function getProfessorById(id){
-        for (let i=0;i<professores.length;i++){
-            if(id==professores[i].id){
-                return professores[i]
-            }
-        }
-        return null
-    }
+    // function getProfessorById(id){
+    //     for (let i=0;i<professores.length;i++){
+    //         if(id==professores[i].id){
+    //             return professores[i]
+    //         }
+    //     }
+    //     return null
+    // }
 
     function handleSubmit(event) {
       event.preventDefault();
-      alert("Chamou o submit");
+      // alert("Chamou o submit");
   
-      const professor = {
-        nome: nome,
-        curso: curso,
-        titulacao: titulacao,
-        ai: ai
-      };
-      console.log(professor)
+      // const professor = {
+      //   nome: nome,
+      //   curso: curso,
+      //   titulacao: titulacao,
+      //   ai: ai
+      // };
+      // console.log(professor)
+
+      const professorAtualizado = { nome, curso, titulacao, ai }
+
+      axios.put(`http://localhost:3001/professores/atualizar/${id}`, professorAtualizado)
+      .then(
+        (response)=>{
+          alert(`Professor de ID ${response.data.id} atualizado.`)
+          navigate("/listarProfessor")
+        }
+      )
+      .catch(error=>console.log(error))
     }
   
     // com o array de dependências vazio, o useEffect funciona como construtor
     useEffect(
-        ()=>{
-            let professor = getProfessorById(id)
-            setNome(professor.nome)
-            setCurso(professor.curso)
-            setTitulacao(professor.titulacao)
-            setAi(professor.ai)
+        ()=> {
+            // {
+            //   let professor = getProfessorById(id)
+            //   setNome(professor.nome)
+            //   setCurso(professor.curso)
+            //   setTitulacao(professor.titulacao)
+            //   setAi(professor.ai)
+            // }
+
+            axios.get(`http://localhost:3001/professores/ver/${id}`)
+            .then((response)=>{
+              setNome(response.data.nome)
+              setCurso(response.data.curso)
+              setTitulacao(response.data.titulacao)
+              setAi(response.data.ai)
+            })
+            .catch(error=>console.log(error))
         }, []
     )
-
     function handleCheckbox(event) {
       setAi({
           ...ai,

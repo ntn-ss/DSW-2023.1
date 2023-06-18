@@ -13,6 +13,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import axios from 'axios'
+
+import { useNavigate } from 'react-router-dom'
 
 const CadastrarProfessor = () => {
   const [nome, setNome] = useState("");
@@ -22,17 +25,23 @@ const CadastrarProfessor = () => {
 
     const { al, ds, es, mc } = ai
 
+    const navigate = useNavigate()
+
   function handleSubmit(event) {
     event.preventDefault();
-    alert("Chamou o submit");
+    
+    // como o nome das variáveis são os mesmos do objeto na API, não é preciso fazer "nome: nome", etc.
+    const novoProfessor = {nome, curso, titulacao, ai}
 
-    const professor = {
-      nome: nome,
-      curso: curso,
-      titulacao: titulacao,
-      ai: ai
-    };
-    console.log(professor)
+    axios.post("http://localhost:3001/professores/cadastrar", novoProfessor)
+    .then(
+      (response)=>{
+        console.log(response);
+        alert(`Professor de ID ${response.data.id} cadastrado.`)
+        navigate("/listarProfessor")
+      }
+    )
+    .catch(error=>console.log(error))
   }
 
   function handleCheckbox(event) {
