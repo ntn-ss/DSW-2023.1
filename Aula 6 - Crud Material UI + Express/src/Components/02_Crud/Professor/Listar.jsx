@@ -48,7 +48,7 @@ const ListarProfessor = () => {
             .then(
                 (response)=>{
                     console.log(response);
-                    const resultado = professores.filter(professor=>professor.id!=id)
+                    const resultado = professores.filter(professor=>professor._id!=id)
                     setProfessores(resultado)
                 }
             )
@@ -59,7 +59,7 @@ const ListarProfessor = () => {
     return (
         <>
             <Typography variant="h5" fontWeight="bold">
-                Listar Professor
+                Listar Professores
             </Typography>
             <TableContainer component={Paper} sx={{my: 4}}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -77,17 +77,17 @@ const ListarProfessor = () => {
                             professores.map(
                                 (professor)=>{
                                     return (
-                                        <StyledTableRow key={professor.id}>
-                                            <StyledTableCell>{professor.id}</StyledTableCell>
+                                        <StyledTableRow key={professor._id}>
+                                            <StyledTableCell>{professor._id}</StyledTableCell>
                                             <StyledTableCell>{professor.nome}</StyledTableCell>
                                             <StyledTableCell>{professor.curso}</StyledTableCell>
                                             <StyledTableCell>{professor.titulacao}</StyledTableCell>
                                             <StyledTableCell>
                                                 <Box>
-                                                    <IconButton aria-label="edit" color="primary" component={Link} to={`/editarProfessor/${professor.id}`}>
+                                                    <IconButton aria-label="edit" color="primary" component={Link} to={`/editarProfessor/${professor._id}`}>
                                                         <EditIcon />
                                                     </IconButton>
-                                                    <IconButton aria-label="delete" color="error" onClick={()=>apagarProfessor(professor.id)}>
+                                                    <IconButton aria-label="delete" color="error" onClick={()=>apagarProfessor(professor._id)}>
                                                         <DeleteIcon />
                                                     </IconButton>
                                                 </Box>

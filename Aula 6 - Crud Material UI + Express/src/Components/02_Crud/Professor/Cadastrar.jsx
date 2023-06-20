@@ -37,7 +37,7 @@ const CadastrarProfessor = () => {
     .then(
       (response)=>{
         console.log(response);
-        alert(`Professor de ID ${response.data.id} cadastrado.`)
+        alert(`Professor de ID ${response.data._id} cadastrado.`)
         navigate("/listarProfessor")
       }
     )

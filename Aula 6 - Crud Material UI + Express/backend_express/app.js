@@ -3,6 +3,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// mongo.conn
+require("./db/mongo.connection")
+
 var professores = require('./routes/professores');
 
 var app = express();

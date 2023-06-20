@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
     const navigate = useNavigate()
 
     const [nome, setNome] = useState("");
+    const [nomeHeader, setNomeHeader] = useState("")
     const [curso, setCurso] = useState("");
     const [titulacao, setTitulacao] = useState("GRAD");
       const [ai, setAi] = useState({al: false, ds: false, es: false, mc: false})
@@ -64,7 +65,7 @@ import { useNavigate } from "react-router-dom";
       axios.put(`http://localhost:3001/professores/atualizar/${id}`, professorAtualizado)
       .then(
         (response)=>{
-          alert(`Professor de ID ${response.data.id} atualizado.`)
+          alert(`Professor de ID ${response.data._id} atualizado.`)
           navigate("/listarProfessor")
         }
       )
@@ -85,6 +86,7 @@ import { useNavigate } from "react-router-dom";
             axios.get(`http://localhost:3001/professores/ver/${id}`)
             .then((response)=>{
               setNome(response.data.nome)
+              setNomeHeader(response.data.nome)
               setCurso(response.data.curso)
               setTitulacao(response.data.titulacao)
               setAi(response.data.ai)
@@ -102,7 +104,7 @@ import { useNavigate } from "react-router-dom";
     return (
       <>
         <Typography variant="h5" fontWeight="bold">
-          Editar Professor {id}
+          Editar Professor {nomeHeader}
         </Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <TextField
