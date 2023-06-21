@@ -66,7 +66,7 @@ import { useNavigate } from "react-router-dom";
       .then(
         (response)=>{
           alert(`Professor de ID ${response.data._id} atualizado.`)
-          navigate("/listarProfessor")
+          navigate("/listarProfessores")
         }
       )
       .catch(error=>console.log(error))

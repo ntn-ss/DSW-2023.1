@@ -38,7 +38,7 @@ const CadastrarProfessor = () => {
       (response)=>{
         console.log(response);
         alert(`Professor de ID ${response.data._id} cadastrado.`)
-        navigate("/listarProfessor")
+        navigate("/listarProfessores")
       }
     )
     .catch(error=>console.log(error))

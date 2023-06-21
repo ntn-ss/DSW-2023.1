@@ -39,6 +39,10 @@ class ProfessorService {
             res.status(200).json(professor)
         }
     )
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json({ error: "Internal server error" });
+    });
   }
 
   static update (req, res) {

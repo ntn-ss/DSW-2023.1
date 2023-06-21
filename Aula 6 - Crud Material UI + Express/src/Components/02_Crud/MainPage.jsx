@@ -23,12 +23,12 @@ const MainPage = () => {
                     <Route path="/sobre" element={<Sobre />}/>
 
                     <Route path="/cadastrarProfessor" element={<CadastrarProfessor />}/>
-                    <Route path="/listarProfessor" element={<ListarProfessor />}/>
+                    <Route path="/listarProfessores" element={<ListarProfessor />}/>
                     <Route path="/editarProfessor/:id" element={<EditarProfessor />}/>
 
                     <Route path="/cadastrarAluno" element={<CadastrarAluno />}/>
-                    <Route path="/listarAluno" element={<ListarAluno />}/>
-                    <Route path="/editarAluno" element={<EditarAluno />}/>
+                    <Route path="/listarAlunos" element={<ListarAluno />}/>
+                    <Route path="/editarAluno/:id" element={<EditarAluno />}/>
                 </Routes>
             </Container>
         </BrowserRouter>

@@ -48,7 +48,7 @@ const MyMenu = () => {
                             handleCloseAnchorElProfessor()
                         }}
                         component={Link}
-                        to="/listarProfessor">Listar</MenuItem>
+                        to="/listarProfessores">Listar</MenuItem>
                 </Menu>
             </Box>
         )
@@ -79,7 +79,7 @@ const MyMenu = () => {
                             handleCloseAnchorElAluno()
                         }}
                         component={Link}
-                        to="/listarAluno">Listar</MenuItem>
+                        to="/listarAlunos">Listar</MenuItem>
                 </Menu>
             </Box>
         )

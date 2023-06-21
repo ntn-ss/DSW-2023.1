@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 require("./db/mongo.connection")
 
 var professores = require('./routes/professores');
+var alunos = require('./routes/alunos');
 
 var app = express();
 
@@ -23,5 +24,6 @@ app.use(function (req, res, next) {
 })
 
 app.use('/professores', professores);
+app.use('/alunos', alunos);
 
 module.exports = app;
