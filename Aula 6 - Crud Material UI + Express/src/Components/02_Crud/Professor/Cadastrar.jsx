@@ -76,6 +76,7 @@ const CadastrarProfessor = () => {
             <MenuItem value="DD">Design Digital</MenuItem>
             <MenuItem value="EC">Engenharia de Computação</MenuItem>
             <MenuItem value="ES">Engenharia de Software</MenuItem>
+            <MenuItem value="RC">Redes de Computadores</MenuItem>
             <MenuItem value="SI">Sistemas de Informação</MenuItem>
           </Select>
         </FormControl>
